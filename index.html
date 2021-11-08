@@ -7,14 +7,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Yandex maps</title>
 </head>
 
 <body>
+    <div class="content">
+        <section id="yandex-map">
+            <div class="yandex-map__block">
+                <div class="yandex-map__left">
+                    <div class="yandex-map__menu">
+                        <div class="menu__tabs">
+                            <div class="menu__tab">
+                                <div id="tab__russia_js" data-country="russia" class="menu__btn"><span>Россия</span></div>
+                            </div>
+                            <div class="menu__tab">
+                                <div id="tab__belorussia_js" data-country="belorussia" class="menu__btn unactive"><span>Белоруссия</span></div>
+                            </div>
+                        </div>
+                        <div class="yandex-map__spoiler">
+                            <div class="spoiler__elements">
+                                <div class="spoiler__element hidden">
+                                    <div class="spoiler__closer">
+                                        <div class="spoiler__city">
+                                            <span>Красноярск</span>
+                                        </div>
+                                        <div class="closer__check"></div>
+                                    </div>
+                                    <div class="spoiler__body">
+                                        <div class="spoiler__office">
+                                            <span>Офис КРАСНОЯРСК</span>
+                                        </div>
+                                        <div class="spoiler__name">
+                                            <span>Лягушкин Иван Сергеевич</span>
+                                        </div>
+                                        <div class="spoiler__phones">
+                                            <div class="spoiler__phone">
+                                                <span>+7(982) 713-51-42</span>
+                                            </div>
+                                            <div class="spoiler__phone">
+                                                <span>+7(945) 623-42-33</span>
+                                            </div>
+                                        </div>
+                                        <div class="spoiler__email">
+                                            <span>username@mail.ru</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class=" yandex-map__right ">
+                            <div class="yandex-map__map ">
+                                <div id="map "></div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        </div>
 </body>
-<script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+<script src="https://yandex.st/jquery/2.2.3/jquery.min.js " type="text/javascript "></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>" type="text/javascript"></script>
 <script src="js/script.js"></script>
 
