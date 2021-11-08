@@ -55,8 +55,6 @@
             font: inherit;
         }
         
-        body {}
-        
         section {
             padding: 10px;
         }
@@ -88,6 +86,7 @@
             text-align: center;
             background-color: #ff9e00;
             border: 1px solid #ff9e00;
+            cursor: pointer;
         }
         
         .menu__tab {
@@ -194,6 +193,10 @@
             margin-right: 13px;
         }
         
+        .spoiler__email {
+            margin-bottom: 15px;
+        }
+        
         .spoiler__email span {
             color: #61c3ed;
         }
@@ -225,4 +228,143 @@
         
         .spoiler__elements {
             margin: 20px 0;
+        }
+        
+        .spoiler__body {
+            padding: 3px;
+        }
+        
+        #map {
+            width: 1183px;
+            height: 736px;
+        }
+        
+        .yandex-map__block {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        html {
+            margin: 10px 10px 10px 10px;
+            font-family: "Helvetica Neue Cyr";
+        }
+        
+        .show {
+            transition: opacity 400ms;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .main {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .button {
+            cursor: pointer;
+            width: 196px;
+            height: 34px;
+            font-size: 11px;
+            line-height: 24px;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            color: #929292;
+            background-color: #ffffff;
+            border: 1px solid #929292;
+        }
+        
+        .button-orange {
+            cursor: pointer;
+            color: #ffffff;
+            background-color: #ff9e00;
+            border: 1px solid #ff9e00;
+        }
+        
+        .menu {
+            width: 395px;
+            height: auto;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.17);
+            background-color: #fafafa;
+        }
+        
+        #map {
+            width: 1183px;
+            height: 736px;
+        }
+        
+        .pointer {
+            width: 29px;
+            height: 29px;
+            border-radius: 19px;
+            background-color: #1e355d;
+            border: 2px solid #ffffff;
+        }
+        
+        .pointer-hover {
+            width: 29px;
+            height: 29px;
+            border-radius: 19px;
+            background-color: #1e355d;
+            border: 3px solid #ffffff;
+            box-shadow: -1px 4px 10px 10px rgba(30, 53, 93, 0.2);
+        }
+        
+        .cluster {
+            position: relative;
+            width: 39px;
+            height: 39px;
+            border-radius: 19px;
+            background-color: #1e355d;
+            border: 2px solid #ffffff;
+            color: white;
+        }
+        
+        .cluster a {
+            position: absolute;
+            margin: 8px 0 0 12px;
+        }
+        
+        .ballon {
+            position: relative;
+            color: white;
+            width: 376px;
+            height: 185px;
+            background-color: #1e355d;
+        }
+        
+        .triangle {
+            z-index: 99;
+            position: absolute;
+            bottom: -20px;
+            left: 45px;
+            border: 11px solid transparent;
+            border-top: 20px solid #1e355d;
+        }
+        
+        .close {
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            top: 1px;
+            color: white;
+            font-weight: 150;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .popover {
+            display: block;
+        }
+        
+        .popover .close {
+            position: absolute;
+            right: 5px;
+            top: 1px;
+        }
+        
+        .btn {
+            margin-top: 10px;
         }
