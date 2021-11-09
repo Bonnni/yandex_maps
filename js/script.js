@@ -153,6 +153,12 @@ function mapConstruct() {
     init();
 }
 
+function mapElements() {
+    createCloser();
+    createSpoilers();
+    mapConstruct();
+}
+
 function constructPointYandexApi(map, clusterer) {
     let pointerStyle = ymaps.templateLayoutFactory.createClass(
         '<div class="pointer"></div>'
@@ -270,9 +276,4 @@ function constructPointYandexApi(map, clusterer) {
     }
 }
 
-function mapElements() {
-    createCloser();
-    createSpoilers();
-    mapConstruct();
-}
 mapElements();
