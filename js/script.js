@@ -31,17 +31,13 @@ tabRussia.onclick = function() {
     country = tabRussia.dataset.country;
     tabRussia.classList.remove('unactive');
     tabBelorussia.classList.add('unactive');
-    createCloser();
-    createSpoilers();
-    mapConstruct();
+    mapElements();
 };
 tabBelorussia.onclick = function() {
     country = tabBelorussia.dataset.country;
     tabBelorussia.classList.remove('unactive');
     tabRussia.classList.add('unactive');
-    createCloser();
-    createSpoilers();
-    mapConstruct();
+    mapElements();
 };
 
 function citiesCollection() {
@@ -90,7 +86,7 @@ function createSpoilers() {
             let element = document.createElement("div");
             element.setAttribute("class", "spoiler__body");
             element.innerHTML = `<div class="spoiler__office">
-                                            <span>${dataMap[i].office}</span>
+                                            <span>Офис ${dataMap[i].office}</span>
                                         </div>
                                         <div class="spoiler__name">
                                             <span>${dataMap[i].name}</span>
@@ -130,7 +126,7 @@ function init() {
         controls: [],
     });
     let clusterer = new ymaps.Clusterer({
-        clusterIconLayout: ymaps.templateLayoutFactory.createClass('<div class="cluster"><a>{{ properties.geoObjects.length }}  </a></div>'),
+        clusterIconLayout: ymaps.templateLayoutFactory.createClass('<div class="cluster"><span>{{ properties.geoObjects.length }}  </span></div>'),
         clusterIconShape: {
             type: 'Rectangle',
             coordinates: [
@@ -146,6 +142,7 @@ function init() {
         .then(function() {
             if (map.getZoom() > 15) map.setZoom(15);
         });
+
 }
 
 function mapConstruct() {
@@ -164,16 +161,29 @@ function constructPointYandexApi(map, clusterer) {
         '<div class="pointer-hover"></div>'
     );
     let ballon = ymaps.templateLayoutFactory.createClass(
-        `<div class='ballon'data-map={{properties.map}}>
-        <a href="#" class='close'>x</a>
-            <div class='ballon-body'>
-            <hr><div data-city={{properties.city}} id='city-id' class="ballon__office" class='p-2 mx-4' style='color: #ff9e00;'><strong>Офис {{properties.office}}</strong></div>
-            <div class='p-2 mx-4'>{{properties.name}}</div>
-            <div class='p-2 mx-4'>{{properties.phone}}</div>
-            <div class='p-2 mx-4' style='color:#61c3ed;'>{{properties.email}}</div>
+        `<div class="ballon" data-map={{properties.map}}>
+        <div class="ballon__close"></div>
+        <div class="ballon__body">
+            <div class="ballon__office spoiler__office">
+                <span>Офис {{properties.office}}</span>
             </div>
-            <div class='triangle'></div>
-        </div>`, {
+            <div class="ballon__field spoiler__name">
+                <span>{{properties.name}}</span>
+            </div>
+            <div class="ballon__phones spoiler__phones">
+                <div class="ballon__field spoiler__phone">
+                    <span>{{properties.phone}}</span>
+                </div>
+                <div class="ballon__field spoiler__phone">
+                    <span>{{properties.phone}}</span>
+                </div>
+            </div>
+            <div class="ballon__email spoiler__email">
+            <span>{{properties.email}}</span>
+        </div>
+        </div>
+        <div class="ballon__triangle"></div>
+    </div>`, {
             build: function() {
                 this.constructor.superclass.build.call(this);
 
@@ -181,12 +191,12 @@ function constructPointYandexApi(map, clusterer) {
 
                 this.applyElementOffset();
 
-                this._$element.find('.close')
+                this._$element.find('.ballon__close')
                     .on('click', $.proxy(this.onCloseClick, this));
             },
 
             clear: function() {
-                this._$element.find('.close')
+                this._$element.find('.ballon__close')
                     .off('click');
 
                 this.constructor.superclass.clear.call(this);
@@ -206,8 +216,8 @@ function constructPointYandexApi(map, clusterer) {
 
             applyElementOffset: function() {
                 this._$element.css({
-                    left: -42,
-                    top: -204,
+                    left: -56,
+                    top: -187,
                 });
             },
 
@@ -221,9 +231,8 @@ function constructPointYandexApi(map, clusterer) {
 
 
     for (let i = 0; i < dataLenght; i++) {
-        if (country === dataMap[i].country) {
-            let geo = [];
-            geo = JSON.parse(dataMap[i].coordinates);
+        if (dataMap[i].country == country) {
+            let geo = JSON.parse(dataMap[i].coordinates);
             element = new ymaps.Placemark(
                 [geo[0], geo[1]], {
                     city: dataMap[i].city,
@@ -248,12 +257,22 @@ function constructPointYandexApi(map, clusterer) {
             element.events
                 .add('click', function(e) {
                     hideSpoiler(getCityId(dataMap[i].city));
+                    map.setCenter([geo[0], geo[1]]);
                     e.get('target').options.set('iconLayout', pointerStyleHover);
                 })
-
+                .add('balloonclose', function(e) {
+                    e.get('target').options.set('iconLayout', pointerStyle);
+                });
 
             clusterer.add(element);
             map.geoObjects.add(clusterer);
         }
     }
 }
+
+function mapElements() {
+    createCloser();
+    createSpoilers();
+    mapConstruct();
+}
+mapElements();

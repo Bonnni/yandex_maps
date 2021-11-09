@@ -64,7 +64,7 @@
             flex-direction: row;
         }
         
-        .yandex-map__menu {
+        .yandex-map__left {
             width: 395px;
             height: auto;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.17);
@@ -99,6 +99,10 @@
             line-height: 24px;
             color: #ffffff;
             font-weight: bold;
+        }
+        
+        .yandex-map__spoilers hr {
+            margin-top: -15px;
         }
         
         .unactive {
@@ -235,8 +239,19 @@
         }
         
         #map {
-            width: 1183px;
+            width: 900px;
             height: 736px;
+        }
+        
+        .yandex-map__left {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .yandex-map__right {
+            z-index: 0;
+            position: relative;
+            margin-left: -150px;
         }
         
         .yandex-map__block {
@@ -295,7 +310,13 @@
             height: 736px;
         }
         
+        [class*="ymaps-2"][class*="-ground-pane"] {
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+            -webkit-filter: grayscale(100%);
+        }
+        
         .pointer {
+            filter: grayscale(0);
             width: 29px;
             height: 29px;
             border-radius: 19px;
@@ -313,58 +334,74 @@
         }
         
         .cluster {
-            position: relative;
             width: 39px;
             height: 39px;
             border-radius: 19px;
             background-color: #1e355d;
             border: 2px solid #ffffff;
-            color: white;
+            padding: 6px 0 0 12px;
         }
         
-        .cluster a {
+        .cluster span {
+            color: white;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .ballon__close {
+            cursor: pointer;
+            position: relative;
+            height: 15px;
+        }
+        
+        .ballon__close::after,
+        .ballon__close::before {
+            content: '';
             position: absolute;
-            margin: 8px 0 0 12px;
+            right: 11px;
+            top: 11px;
+            border-radius: 50px;
+            width: 2px;
+            height: 12px;
+            background-color: #ffff;
+        }
+        
+        .ballon__close::after {
+            transform: rotate(130deg);
+        }
+        
+        .ballon__close::before {
+            transform: rotate(230deg);
         }
         
         .ballon {
             position: relative;
-            color: white;
             width: 376px;
             height: 185px;
             background-color: #1e355d;
         }
         
-        .triangle {
-            z-index: 99;
+        .ballon__triangle {
+            z-index: 2;
             position: absolute;
-            bottom: -20px;
-            left: 45px;
+            bottom: -25px;
+            left: 60px;
             border: 11px solid transparent;
             border-top: 20px solid #1e355d;
         }
         
-        .close {
-            cursor: pointer;
-            position: absolute;
-            right: 5px;
-            top: 1px;
-            color: white;
-            font-weight: 150;
-            width: 20px;
-            height: 20px;
+        .ballon__body {
+            color: #ffffff;
+            padding: 0 23px 23px;
         }
         
-        .popover {
-            display: block;
+        .ballon__office span {
+            color: #ff9e00;
         }
         
-        .popover .close {
-            position: absolute;
-            right: 5px;
-            top: 1px;
-        }
-        
-        .btn {
-            margin-top: 10px;
+        .ymaps-2-1-79-gotoymaps__container,
+        .ymaps-2-1-79-gototech {
+            display: none!important;
         }
